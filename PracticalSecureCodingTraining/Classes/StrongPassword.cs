@@ -1,50 +1,51 @@
-﻿namespace PracticalSecureCodingTraining.Classes;
-
-public static class StrongPassword
+﻿namespace PracticalSecureCodingTraining.Classes
 {
-    public static bool ValidateStrongPassword(string password, int minLength = 8)
+    public static class StrongPassword
     {
-        // Set all checks to false
-        var isUpper = false;
-        var isLower = false;
-        var isNumber = false;
-        var isSpecialCharacters = false;
-        var isMinimumLength = false;
+        //GitHub Gist (Naji El Kotob) https://gist.github.com/NajiElKotob/ab698cbf38682044ec34ed51ad87aced
 
-        const string specialCharacters = @"!@#$%^&*()[]{}<>_-=+/\|'`~;,.";
+        public static bool ValidateStrongPassword(string password, int minLength = 8)
+        {
+            // Set all checks to false
+            var isUpper = false;
+            var isLower = false;
+            var isNumber = false;
+            var isSpecialCharacters = false;
+            var isMinimumLength = false;
 
-        // Validate all conditions
-        if (password.Any(char.IsUpper))
-        {
-            isUpper = true;
-        }
-        if (password.Any(char.IsLower))
-        {
-            isLower = true;
-        }
-        if (password.Any(char.IsNumber))
-        {
-            isNumber = true;
-        }
-        if (password.IndexOfAny(specialCharacters.ToCharArray()) != -1)
-        {
-            isSpecialCharacters = true;
-        }
-        if (password.Length >= minLength)
-        {
-            isMinimumLength = true;
-        }
-        
-        //Validate strong password
-        if (isUpper && isLower && isNumber && isSpecialCharacters && isMinimumLength)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+            const string specialCharacters = @"!@#$%^&*()[]{}<>_-=+/\|'`~;,.";
+
+            // Validate all conditions
+            if (password.Any(char.IsUpper))
+            {
+                isUpper = true;
+            }
+            if (password.Any(char.IsLower))
+            {
+                isLower = true;
+            }
+            if (password.Any(char.IsNumber))
+            {
+                isNumber = true;
+            }
+            if (password.IndexOfAny(specialCharacters.ToCharArray()) != -1)
+            {
+                isSpecialCharacters = true;
+            }
+            if (password.Length >= minLength)
+            {
+                isMinimumLength = true;
+            }
+
+            //Validate strong password
+            if (isUpper && isLower && isNumber && isSpecialCharacters && isMinimumLength)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
-
-
